@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							https://www.springframework.org/schema/beans/spring-beans.xsd"> 
+<!-- <beans 
+xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+					https://www.springframework.org/schema/beans/spring-beans.xsd"> 
+							 -->
+	<bean id="blEventPublisher" class="org.peddi.spring.core.ctx.xml.appevent.BlacklistEventPublisher">
+		<property name="blacklist">
+			<list>
+				<value>user1@example.com</value>
+				<value>user43@example.com</value>
+				<value>user54@example.com</value>
+				<value>user68@example.com</value>
+			</list>
+		</property>
+	</bean>
+ 	<bean id="blEventListener" class="org.peddi.spring.core.ctx.xml.appevent.BlacklistEventListener">
+		<property name="notificationAddress" value="admin1@example.com"/>
+	</bean>
+		<bean id="blEventListenerWithAnnotation" class="org.peddi.spring.core.ctx.xml.appevent.BlacklistEventListenerWithAnnotation">
+		<property name="notificationAddress" value="admin2@example.com"/>
+	</bean>
+	
+</beans>

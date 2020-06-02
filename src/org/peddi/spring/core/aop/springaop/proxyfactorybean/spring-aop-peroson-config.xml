@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+			   http://www.springframework.org/schema/aop   https://www.springframework.org/schema/aop/spring-aop.xsd">
+			   
+	<bean id="personSvcTarget" class="org.peddi.spring.core.aop.service.support.DefaultPersonService"/>
+	
+	<!-- TODO: define adivsor bean -->
+	
+	<bean id="debugInterceptor" class="org.springframework.aop.interceptor.DebugInterceptor"></bean>
+	
+	<bean id="personSvcProxy"
+			class="org.springframework.aop.framework.ProxyFactoryBean">
+			
+			<property name="target" ref="personSvcTarget"/>
+			
+			<property name="proxyInterfaces" >
+				<list>
+					<value>org.peddi.spring.core.aop.service.PersonService</value>
+				</list>
+			</property>
+			
+			<property name="interceptorNames">
+				<list>
+					<value>debugInterceptor</value>
+				</list>
+			</property>
+	</bean>
+	
+	
+			   
+</beans>

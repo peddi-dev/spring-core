@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Springframework-5.1.9-libs">
+    <CLASSES>
+      <root url="file://$USER_HOME$/PeddiApplications/Spring/5.1.9/spring-framework-5.1.9.RELEASE/libs" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/PeddiApplications/Spring/5.1.9/spring-framework-5.1.9.RELEASE/libs" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/PeddiApplications/Spring/5.1.9/spring-framework-5.1.9.RELEASE/libs" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/PeddiApplications/Spring/5.1.9/spring-framework-5.1.9.RELEASE/libs" recursive="false" type="SOURCES" />
+  </library>
+</component>

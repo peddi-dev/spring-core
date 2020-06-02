@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+			   http://www.springframework.org/schema/aop   https://www.springframework.org/schema/aop/spring-aop.xsd">
+	
+	<bean id="personSvcTargetBean" 
+		class="org.peddi.spring.core.aop.service.support.DefaultPersonService"/>
+	
+	<bean id="springAOPMethodBeforeAdviceBean"
+			class="org.peddi.spring.core.aop.springaop.advice.before.SpringAOPMethodBeforeAdvice">
+	</bean>
+	
+	<bean id="nameMatchMethodPointcutAdvisorBean"
+		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		
+		<property name="advice" 
+					ref="springAOPMethodBeforeAdviceBean"/>
+		
+		<property name="mappedName"
+					value="getPerson" />
+		
+	</bean>
+	
+	<bean id="personSvcProxyBean"
+			class="org.springframework.aop.framework.ProxyFactoryBean">
+
+	    <property name="target" ref="personSvcTargetBean"/>
+ 
+	    <property name="proxyInterfaces" >
+	        <list>
+		    	<value>org.peddi.spring.core.aop.service.PersonService</value>
+		    </list>
+	    </property>
+	    
+	    <property name="interceptorNames">
+	        <list>
+	            <value>nameMatchMethodPointcutAdvisorBean</value>
+	        </list>
+    	</property>
+    	
+    </bean>
+    
+</beans>

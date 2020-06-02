@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+							https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="emp1"
+		class="org.peddi.spring.core.beans.propertyeditors.Employee">
+		<property name="firstName" value="David"></property>
+		<property name="lastName" value="Raffo"/>
+		<property name="employeeNumber" value="3410"/>
+		<property name="job" value="Manager"/>
+		<property name="joinDate" value="2019/12/1"/>
+		<!-- PersonEditor is automatically discovered as it is named by appending "Editor" to the Class name "Person" -->
+		<property name="spouse" value="Jane:Spencer" />
+	</bean>
+	
+	<!-- Following PropertyEditor does not need explicit registration as it used the naming convention PersonEditor -->
+	<!-- 	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="customEditors">
+			<map>
+				<entry key="org.peddi.spring.core.beans.propertyeditors.Person" 
+						value="org.peddi.spring.core.beans.propertyeditors.PersonPropertyEditor"/>
+			</map>
+		</property>
+	</bean> -->
+
+</beans>

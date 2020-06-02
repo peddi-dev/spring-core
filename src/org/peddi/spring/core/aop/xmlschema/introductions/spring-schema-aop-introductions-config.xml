@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:aop="http://www.springframework.org/schema/aop"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+ 	https://www.springframework.org/schema/beans/spring-beans.xsd
+ 	http://www.springframework.org/schema/aop
+ 	https://www.springframework.org/schema/aop/spring-aop.xsd"> 
+ 	
+
+ 	
+ 	<bean id="personServiceBean" class="org.peddi.spring.core.aop.service.support.DefaultPersonService"/>
+ 	<bean id="usageTrackigBean" class="org.peddi.spring.core.aop.aspectj.helper.DefaultUsageTracked"/>
+ 	
+ 	<aop:config>
+ 		<aop:aspect id="usageTrackig" ref="usageTrackigBean">
+ 		
+	 		<aop:declare-parents
+	 			types-matching="org.peddi.spring.core.aop.xmlschema.service.*"
+	 			implement-interface="org.peddi.spring.core.aop.aspectj.helper.UsageTracked"
+	 			default-impl="org.peddi.spring.core.aop.aspectj.helper.DefaultUsageTracked"/>
+	 		<!-- 		pointcut="execution(* org.peddi.spring.core.aop.xmlschema.service.PersonService.*(..)) and this(usageTracked)" -->
+	 		<aop:before
+	 			pointcut="execution(* org.peddi.spring.core.aop.service.PersonService.*(..)) and this(usageTracked)"
+	 			method="recordUsage"/>
+	 			
+ 		</aop:aspect>
+ 	</aop:config>
+ 	
+</beans>
